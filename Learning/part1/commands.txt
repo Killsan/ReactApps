@@ -1,0 +1,5 @@
+node app.js 
+
+npm install 
+
+npx babel index.jsx --out-file index.js 
