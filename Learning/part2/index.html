@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>part2Learnign</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="header"></div>
+    <hr>
+    <div id="main"></div>
+    <hr>
+    <div id="classUsage"></div>
+    <hr>
+    <div id="defaultProps"></div>
+    <hr>
+    <div id="div4firstButton"></div>
+
+
+    <script type="text/babel">
+
+        function tick(){
+            ReactDOM.render(
+                <p>Current time is {new Date().toLocaleTimeString()}</p>,
+                document.getElementById("header")
+            )
+        }
+        setInterval(tick, 1000);
+
+        ReactDOM.render(
+            <div id="items">
+                <h2>Phone list</h2>
+                <ul>
+                    <li>Apple</li>
+                    <li>Samsung</li>
+                    <li>Xiaomi</li>
+                    <li>Huaway</li>
+                </ul>   
+            </div>,
+            document.getElementById("main"),
+            function(){console.log("Element was rendered");}
+        )
+        
+        class Hello extends React.Component{
+            render(props){
+                return <div>
+                    <p>Using class</p>
+                    <p>Name: {this.props.name}</p>
+                    <p>Age: {this.props.age}</p>
+                </div>;
+            }
+        }
+
+        Hello.defaultProps = {name: "Unknown", age: "unknown"}; 
+
+        ReactDOM.render(
+            <Hello name="Kirill" age="18" />,
+            document.getElementById("classUsage")
+        )
+
+        function HelloFunc(props){
+            return <div>
+                <p>Using function</p>
+                <p>Name: {props.Name}</p>
+                <p>Age: {props.Age}</p>
+            </div>
+        }
+
+        HelloFunc.defaultProps = {Name: "Unknown", Age: "unknown"};
+
+        ReactDOM.render(
+            <Hello/>,
+            document.getElementById("defaultProps")
+        )
+
+        class FirstButtonEvent extends React.Component{
+            constructor(props){
+                super(props),
+                this.press = this.press.bind(this);
+            }
+            press(){
+                console.log(this);
+                alert("Hello react");
+            }
+            render(){
+                return <button onClick={this.press}>{this.props.buttonText}</button>
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
