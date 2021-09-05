@@ -19,6 +19,8 @@
     <div id="defaultProps"></div>
     <hr>
     <div id="div4firstButton"></div>
+    <hr>
+    <div id="div4secondButton"></div>
 
 
     <script type="text/babel">
@@ -91,7 +93,31 @@
             }
         }
 
-        
+        ReactDOM.render(
+            <FirstButtonEvent buttonText="Click if u wanna live longer"/>,
+            document.getElementById("div4firstButton")
+        )
+
+        class SecondButton extends React.Component{
+            constructor(props){
+                super(props),
+                this.press = this.press.bind(this);
+            }
+
+            press(){
+                console.log(this);
+                console.log("SURPRISE THERE IS SOME TEXT");
+                alert("Check console output");
+            }
+            render(){
+                return <button onClick={this.press}>{this.props.buttonText}</button>
+            }
+        }
+
+        ReactDOM.render(
+            <SecondButton buttonText="Click and everything will be good"/>,
+            document.getElementById("div4secondButton")
+        )
     </script>
 </body>
 </html>
